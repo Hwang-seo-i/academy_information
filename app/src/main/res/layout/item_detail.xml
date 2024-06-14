@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:text="분야 구분"
+            android:textSize="15sp"
+            android:textColor="#888D96"/>
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:gravity="end"
+            android:text="분야 구분"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:text="교습과정"
+            android:textSize="15sp"
+            android:textColor="#888D96"/>
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:gravity="end"
+            android:text="분야 구분"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:text="교습계열"
+            android:textSize="15sp"
+            android:textColor="#888D96"/>
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:gravity="end"
+            android:text="분야 구분"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:text="교습과목"
+            android:textSize="15sp"
+            android:textColor="#888D96"/>
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:gravity="end"
+            android:text="분야 구분"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:text="교습기간"
+            android:textSize="15sp"
+            android:textColor="#888D96"/>
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:gravity="end"
+            android:text="분야 구분"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:text="기타경비합계"
+            android:textSize="15sp"
+            android:textColor="#888D96"/>
+
+        <TextView
+            style="@style/detail_item_text_view"
+            android:gravity="end"
+            android:text="분야 구분"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+</LinearLayout>
