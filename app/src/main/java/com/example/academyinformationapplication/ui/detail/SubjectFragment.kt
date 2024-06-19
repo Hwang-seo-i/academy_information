@@ -1,4 +1,6 @@
 package com.example.academyinformationapplication.ui.detail
 
-class SubjectFragment {
+import androidx.fragment.app.Fragment
+
+class SubjectFragment: Fragment() {
 }

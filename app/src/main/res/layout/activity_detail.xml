@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.detail.DetailActivity">
 
@@ -11,7 +12,7 @@
 
     <!-- 상단바 -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/board_toolbar"
+        android:id="@+id/toolbar"
         app:contentInsetStart="0dp"
         app:titleTextColor="@color/black"
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
+        android:id="@+id/academyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -28,9 +30,10 @@
         android:textStyle="bold"/>
 
     <TextView
+        android:id="@+id/academyAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
         android:text="주소"
         android:textSize="13sp"
@@ -38,9 +41,10 @@
         android:textColor="#888D96"/>
 
     <TextView
+        android:id="@+id/teachingProcess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:text="교습계열"
         android:textSize="13sp"
@@ -49,13 +53,12 @@
 
     <!-- TabLayout과 ViewPager2 -->
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"/>
+        style="@style/tapStyle"
+        android:id="@+id/tabs"
+        android:layout_marginTop="20dp" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
@@ -74,5 +77,4 @@
         android:textColor="@android:color/white"
         android:padding="10dp"
         tools:ignore="RtlSymmetry" />
-
 </LinearLayout>

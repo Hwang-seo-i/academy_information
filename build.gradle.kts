@@ -2,4 +2,6 @@
 plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
+    // 추가한 부분
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10" apply false
 }

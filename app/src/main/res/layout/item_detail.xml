@@ -11,33 +11,15 @@
 
         <TextView
             style="@style/detail_item_text_view"
-            android:text="분야 구분"
+            android:text="분야구분"
             android:textSize="15sp"
             android:textColor="#888D96"/>
 
         <TextView
+            android:id="@+id/fieldCategory"
             style="@style/detail_item_text_view"
             android:gravity="end"
-            android:text="분야 구분"
-            android:textSize="16sp"
-            android:textColor="@color/black"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/detail_item_text_view"
-            android:text="교습과정"
-            android:textSize="15sp"
-            android:textColor="#888D96"/>
-
-        <TextView
-            style="@style/detail_item_text_view"
-            android:gravity="end"
-            android:text="분야 구분"
+            android:text="분야구분"
             android:textSize="16sp"
             android:textColor="@color/black"/>
     </LinearLayout>
@@ -54,9 +36,10 @@
             android:textColor="#888D96"/>
 
         <TextView
+            android:id="@+id/teachingProfession"
             style="@style/detail_item_text_view"
             android:gravity="end"
-            android:text="분야 구분"
+            android:text="교습계열"
             android:textSize="16sp"
             android:textColor="@color/black"/>
     </LinearLayout>
@@ -68,14 +51,15 @@
 
         <TextView
             style="@style/detail_item_text_view"
-            android:text="교습과목"
+            android:text="교습과목(반)"
             android:textSize="15sp"
             android:textColor="#888D96"/>
 
         <TextView
+            android:id="@+id/teachingCourse"
             style="@style/detail_item_text_view"
             android:gravity="end"
-            android:text="분야 구분"
+            android:text="교습과목(반)"
             android:textSize="16sp"
             android:textColor="@color/black"/>
     </LinearLayout>
@@ -92,9 +76,10 @@
             android:textColor="#888D96"/>
 
         <TextView
+            android:id="@+id/teachingPeriod"
             style="@style/detail_item_text_view"
             android:gravity="end"
-            android:text="분야 구분"
+            android:text="교습기간"
             android:textSize="16sp"
             android:textColor="@color/black"/>
     </LinearLayout>
@@ -111,9 +96,10 @@
             android:textColor="#888D96"/>
 
         <TextView
+            android:id="@+id/totalExpense"
             style="@style/detail_item_text_view"
             android:gravity="end"
-            android:text="분야 구분"
+            android:text="기타경비합계"
             android:textSize="16sp"
             android:textColor="@color/black"/>
     </LinearLayout>
