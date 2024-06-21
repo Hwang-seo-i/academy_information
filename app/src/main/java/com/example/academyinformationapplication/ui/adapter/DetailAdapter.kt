@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.academyinformationapplication.R
 import com.example.academyinformationapplication.data.model.AcademyData
 import com.example.academyinformationapplication.databinding.ItemDetailBinding
 import com.example.academyinformationapplication.ui.detail.DetailActivity
@@ -21,7 +22,7 @@ class DetailAdapter(
             binding.teachingProfession.text = currentAcademy.teachingProfession // 교습계열
             binding.teachingCourse.text = currentAcademy.teachingCourse // 교습과목(반)
             binding.teachingPeriod.text = currentAcademy.teachingPeriod // 교습기간
-            binding.totalExpense.text = currentAcademy.totalExpense // 기타경비합계
+            binding.totalExpense.text = currentAcademy.totalTeachingExpense // 총교습비
 
             binding.root.setOnClickListener {
                 val context = it.context
@@ -30,7 +31,7 @@ class DetailAdapter(
                     putExtra("teachingProfession", currentAcademy.teachingProfession)
                     putExtra("teachingCourse", currentAcademy.teachingCourse)
                     putExtra("teachingPeriod", currentAcademy.teachingPeriod)
-                    putExtra("totalExpense", currentAcademy.totalExpense)
+                    putExtra("totalExpense", currentAcademy.totalTeachingExpense)
                 }
                 context.startActivity(intent)
             }

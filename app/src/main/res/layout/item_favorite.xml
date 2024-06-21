@@ -1,0 +1,55 @@
+<!-- item_favorite.xml -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="academy"
+            type="com.example.academyinformationapplication.data.model.AcademyTeachingProcess" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/academyItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/academyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:text="@{academy.academyName}"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/teachingProcess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/academyName"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="5dp"
+            android:text="@{academy.teachingProcess}"
+            android:textColor="#888D96"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/academyAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/academyName"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="@{academy.academyAddress}"
+            android:textColor="#888D96"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</layout>

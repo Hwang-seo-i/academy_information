@@ -9,12 +9,13 @@ import com.example.academyinformationapplication.data.model.AcademyTeachingProce
 import com.example.academyinformationapplication.databinding.ItemAcademyBinding
 import com.example.academyinformationapplication.ui.detail.DetailActivity
 
-class AcademyAdapter(private var academyList: List<AcademyTeachingProcess>) :
-    RecyclerView.Adapter<AcademyAdapter.ViewHolder>() {
+class FavoriteAdapter(var academyList: MutableList<AcademyTeachingProcess>) :
+    RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemAcademyBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(currentAcademy: AcademyTeachingProcess) {
             binding.academyName.text = currentAcademy.academyName // 학원명
             binding.academyAddress.text = currentAcademy.academyAddress // 주소
@@ -45,8 +46,9 @@ class AcademyAdapter(private var academyList: List<AcademyTeachingProcess>) :
     override fun getItemCount(): Int = academyList.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateAcademy(newAcademyList: List<AcademyTeachingProcess>) {
-        academyList = newAcademyList
+    fun updateFavorites(newList: List<AcademyTeachingProcess>) {
+        academyList.clear()
+        academyList.addAll(newList)
         notifyDataSetChanged()
     }
 }

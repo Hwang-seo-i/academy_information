@@ -2,7 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/teachingCourse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="교습과목"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,6 +33,7 @@
             android:gravity="end"
             android:text="분야구분"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:textColor="@color/black"/>
     </LinearLayout>
 
@@ -41,28 +54,29 @@
             android:gravity="end"
             android:text="교습계열"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:textColor="@color/black"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
 
-        <TextView
-            style="@style/detail_item_text_view"
-            android:text="교습과목(반)"
-            android:textSize="15sp"
-            android:textColor="#888D96"/>
+<!--        <TextView-->
+<!--            style="@style/detail_item_text_view"-->
+<!--            android:text="교습과목(반)"-->
+<!--            android:textSize="15sp"-->
+<!--            android:textColor="#888D96"/>-->
 
-        <TextView
-            android:id="@+id/teachingCourse"
-            style="@style/detail_item_text_view"
-            android:gravity="end"
-            android:text="교습과목(반)"
-            android:textSize="16sp"
-            android:textColor="@color/black"/>
-    </LinearLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/teachingCourse"-->
+<!--            style="@style/detail_item_text_view"-->
+<!--            android:gravity="end"-->
+<!--            android:text="교습과목(반)"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textColor="@color/black"/>-->
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,17 +95,19 @@
             android:gravity="end"
             android:text="교습기간"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:textColor="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
 
         <TextView
             style="@style/detail_item_text_view"
-            android:text="기타경비합계"
+            android:text="총교습비"
             android:textSize="15sp"
             android:textColor="#888D96"/>
 
@@ -100,6 +116,7 @@
             style="@style/detail_item_text_view"
             android:gravity="end"
             android:text="기타경비합계"
+            android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@color/black"/>
     </LinearLayout>

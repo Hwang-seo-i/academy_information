@@ -7,15 +7,13 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 
 open class BaseActivity : AppCompatActivity() {
-    protected lateinit var toolbar: Toolbar
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    protected fun setupToolbar(toolbarId: Int) {
-        toolbar = findViewById(toolbarId)
+    protected fun setupToolbar(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
 
         val actionBar: ActionBar? = supportActionBar

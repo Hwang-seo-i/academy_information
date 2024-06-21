@@ -1,14 +1,17 @@
 package com.example.academyinformationapplication.ui.detail
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.example.academyinformationapplication.R
 import com.example.academyinformationapplication.data.model.AcademyTeachingProcess
 import com.example.academyinformationapplication.databinding.ActivityDetailBinding
+import com.example.academyinformationapplication.ui.main.MainViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 private const val DETAIL_PAGE = 2
@@ -18,6 +21,9 @@ class DetailActivity : AppCompatActivity() {
     private val tabTextList = arrayListOf("상세정보", "리뷰")
     private lateinit var viewPager: ViewPager2
     private lateinit var detailViewModel: DetailViewModel
+    private lateinit var mainViewModel: MainViewModel
+    private lateinit var favoriteIcon: ImageView
+    private var isFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,31 +31,50 @@ class DetailActivity : AppCompatActivity() {
         val binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // ViewModel 초기화
         detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        // Main에서 인텐트로 전달된 데이터 가져오기
         val data = intent.getSerializableExtra("data") as AcademyTeachingProcess
-        val academyName = data.academyName
-        val teachingProcess = data.teachingProcess
 
-        // 데이터를 ViewModel에 전달하고 갱신 요청
+        // Preferences 설정
+        mainViewModel.setPreferences(getSharedPreferences("favorites", MODE_PRIVATE))
+
         detailViewModel.refresh(data)
 
-        // 뷰페이저 초기화
         viewPager = binding.viewPager
         viewPager.adapter = ScreenSlidePagerAdapter(this)
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        // 탭레이아웃과 뷰페이저 연결
         TabLayoutMediator(binding.tabs, viewPager) { tab, position ->
             tab.text = tabTextList[position]
         }.attach()
 
-        // UI에 데이터 표시
-        binding.academyName.text = academyName
-        binding.teachingProcess.text = teachingProcess
+        binding.academyName.text = data.academyName
+        binding.teachingProcess.text = data.teachingProcess
         binding.academyAddress.text = data.academyAddress
+
+        favoriteIcon = binding.toolbar.findViewById(R.id.favoriteIcon)
+        isFavorite = mainViewModel.favoriteList.value?.any { it.academyName == data.academyName } == true
+        updateFavoriteIcon()
+
+        favoriteIcon.setOnClickListener {
+            isFavorite = !isFavorite
+            updateFavoriteIcon()
+            data.isFavorite = isFavorite
+            if (isFavorite) {
+                mainViewModel.addFavorite(data)
+            } else {
+                mainViewModel.removeFavorite(data)
+            }
+        }
+    }
+
+    private fun updateFavoriteIcon() {
+        if (isFavorite) {
+            favoriteIcon.setImageResource(R.drawable.favorite)
+        } else {
+            favoriteIcon.setImageResource(R.drawable.favorite_border)
+        }
     }
 
     private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {

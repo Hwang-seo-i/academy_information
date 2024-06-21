@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Academy Information Application</string>
+    <string name="favorite">Favorite</string>
 </resources>

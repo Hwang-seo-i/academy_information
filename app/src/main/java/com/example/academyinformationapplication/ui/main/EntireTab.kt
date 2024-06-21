@@ -1,7 +1,7 @@
 package com.example.academyinformationapplication.ui.main
 
-import AcademyAdapter
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,9 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.academyinformationapplication.databinding.RecyclerviewBinding
+import com.example.academyinformationapplication.ui.adapter.AcademyAdapter
 
 class EntireTab : Fragment() {
     private val TAG = "EntireTab"
@@ -31,6 +31,11 @@ class EntireTab : Fragment() {
         val root: View = binding.root
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        // SharedPreferences 객체 가져와서 ViewModel에 설정
+        val preferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        mainViewModel.setPreferences(preferences)
+
         mainViewModel.refresh()
 
         academyAdapter = AcademyAdapter(arrayListOf())
@@ -47,24 +52,16 @@ class EntireTab : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun observeViewModel() {
-        mainViewModel.groupedData.observe(viewLifecycleOwner, Observer {
+        mainViewModel.groupedData.observe(viewLifecycleOwner) { it ->
             it?.let {
                 academyAdapter.updateAcademy(it)
                 academyAdapter.notifyDataSetChanged()
             }
-        })
+        }
 
-        mainViewModel.academyError.observe(viewLifecycleOwner, Observer { isError ->
-            Log.d(TAG, "movieLoadError=$isError")
-        })
-
-        mainViewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
-            isLoading?.let {
-                if (it) {
-                    Log.d(TAG, "loading=$it")
-                }
-            }
-        })
+        mainViewModel.academyError.observe(viewLifecycleOwner) { isError ->
+            Log.d(TAG, "academyLoadError=$isError")
+        }
     }
 
     override fun onDestroyView() {

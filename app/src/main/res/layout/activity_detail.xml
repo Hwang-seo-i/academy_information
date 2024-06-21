@@ -17,6 +17,21 @@
         app:titleTextColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/arrow_back"/>
+
+        <ImageView
+            android:id="@+id/favoriteIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="end"
+            android:src="@drawable/favorite_border"/>
+
     </androidx.appcompat.widget.Toolbar>
 
     <TextView

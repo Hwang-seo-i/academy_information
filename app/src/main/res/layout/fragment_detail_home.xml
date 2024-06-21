@@ -24,6 +24,7 @@
                 android:layout_marginStart="5dp"
                 android:text="위치"
                 android:textStyle="bold"
+                android:textSize="20sp"
                 android:textColor="@color/black"/>
         </LinearLayout>
 
@@ -42,7 +43,7 @@
             android:layout_marginStart="15dp"
             android:text="정보"
             android:textStyle="bold"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textColor="@color/black"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -52,6 +53,8 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginTop="10dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:overScrollMode="never"
+            android:nestedScrollingEnabled="false"/>
     </LinearLayout>
 </ScrollView>
