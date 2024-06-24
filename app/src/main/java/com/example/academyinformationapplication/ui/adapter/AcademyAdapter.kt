@@ -24,7 +24,7 @@ class AcademyAdapter(private var academyList: List<AcademyTeachingProcess>) :
                 val context = it.context
                 val intent = Intent(context, DetailActivity::class.java).apply {
                     putExtra("data", currentAcademy)
-                    putExtra("likePosition", adapterPosition)
+                    putExtra("favorites", adapterPosition)
                     putExtra("myItem", currentAcademy)
                 }
                 context.startActivity(intent)

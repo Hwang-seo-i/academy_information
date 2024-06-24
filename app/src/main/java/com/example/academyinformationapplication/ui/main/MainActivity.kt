@@ -14,10 +14,6 @@ private const val NUM_PAGE = 2
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        const val DETAIL_REQUEST_CODE = 1001
-    }
-
     private val tabTextList = arrayListOf("전체", "좋아요 목록")
     private lateinit var viewPager: ViewPager2
 
@@ -25,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         // viewPager 초기화
         viewPager = binding.viewPager
@@ -44,21 +41,6 @@ class MainActivity : AppCompatActivity() {
             return when (position) {
                 0 -> EntireTab()
                 else -> FavoriteTab()
-            }
-        }
-    }
-
-    // 디테일 액티비티에서 전달된 데이터 처리
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == DETAIL_REQUEST_CODE && resultCode == RESULT_OK) {
-            val likePosition = data?.getIntExtra("likePosition", -1)
-            val isLiked = data?.getBooleanExtra("isLiked", false)
-
-            // FavoriteTab Fragment에 데이터 전달
-            val fragment = supportFragmentManager.findFragmentByTag("${1}") as FavoriteTab
-            if (isLiked != null) {
-                fragment.updateFavoriteList(likePosition, isLiked)
             }
         }
     }

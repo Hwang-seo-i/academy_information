@@ -48,13 +48,11 @@ data class AcademyData(
     val academyType: String,
     @SerializedName("학원주소")
     val academyAddress: String,
-    var isFavorite: Boolean = false
 ): java.io.Serializable
 
 data class AcademyTeachingProcess(
     val academyName: String,
     val academyAddress: String,
     val teachingProcess: String,
-    var isFavorite: Boolean = false,
     var teachingCourseList: List<AcademyData> = listOf()
 ): java.io.Serializable

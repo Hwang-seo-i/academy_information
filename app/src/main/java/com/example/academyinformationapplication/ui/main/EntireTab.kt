@@ -16,10 +16,11 @@ import com.example.academyinformationapplication.ui.adapter.AcademyAdapter
 
 class EntireTab : Fragment() {
     private val TAG = "EntireTab"
-    private lateinit var mainViewModel: MainViewModel
+
     private var _binding: RecyclerviewBinding? = null
     private val binding get() = _binding!!
     private lateinit var academyAdapter: AcademyAdapter
+    private lateinit var mainViewModel: MainViewModel
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -32,9 +33,9 @@ class EntireTab : Fragment() {
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        // SharedPreferences 객체 가져와서 ViewModel에 설정
-        val preferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
-        mainViewModel.setPreferences(preferences)
+//        // SharedPreferences 객체 가져와서 ViewModel에 설정
+//        val preferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
+//        mainViewModel.setPreferences(preferences)
 
         mainViewModel.refresh()
 

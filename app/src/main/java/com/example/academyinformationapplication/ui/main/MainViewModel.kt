@@ -26,14 +26,17 @@ class MainViewModel : ViewModel() {
     val academyError = MutableLiveData<String?>()
     private val loading = MutableLiveData<Boolean>()
 
-    private val _favoriteList = MutableLiveData<List<AcademyTeachingProcess>>()
+    // favoriteList를 LiveData로 설정하여 외부에서 수정할 수 없도록 보호
+    private var _favoriteList = MutableLiveData<List<AcademyTeachingProcess>>()
     val favoriteList: LiveData<List<AcademyTeachingProcess>> get() = _favoriteList
 
+    // SharedPreferences 설정 메서드
     fun setPreferences(preferences: SharedPreferences) {
         this.preferences = preferences
-        _favoriteList.value = loadFavorites()
+        _favoriteList.value = loadFavorites().toMutableList()
     }
 
+    // 데이터 새로고침 메서드
     fun refresh() {
         loading.value = true
 
@@ -63,20 +66,31 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    // 즐겨찾기 추가 메서드
     fun addFavorite(academy: AcademyTeachingProcess) {
         val favorites = loadFavorites().toMutableList()
         favorites.add(academy)
         saveFavorites(favorites)
         _favoriteList.value = favorites
+        println(">>> Add : ${_favoriteList.value}")
     }
 
+    // 즐겨찾기 제거 메서드
     fun removeFavorite(academy: AcademyTeachingProcess) {
         val favorites = loadFavorites().toMutableList()
         favorites.remove(academy)
         saveFavorites(favorites)
-        _favoriteList.value = favorites
+        _favoriteList.postValue(favorites)
+        println(">>> Remove : ${_favoriteList.value}")
     }
 
+    // 특정 아카데미의 현재 즐겨찾기 상태 반환 메서드
+    fun getCurrentFavoriteState(academy: AcademyTeachingProcess): Boolean {
+        val favorites = loadFavorites().toMutableList()
+        return favorites.contains(academy)
+    }
+
+    // 즐겨찾기 로드 메서드
     private fun loadFavorites(): List<AcademyTeachingProcess> {
         if (!::preferences.isInitialized) {
             throw IllegalStateException("Preferences have not been initialized.")
@@ -86,6 +100,7 @@ class MainViewModel : ViewModel() {
         return Gson().fromJson(json, type)
     }
 
+    // 즐겨찾기 저장 메서드
     private fun saveFavorites(favorites: List<AcademyTeachingProcess>) {
         val editor = preferences.edit()
         val json = Gson().toJson(favorites)
@@ -93,13 +108,13 @@ class MainViewModel : ViewModel() {
         editor.apply()
     }
 
+    // 데이터 그룹화 메서드
     private fun groupByAcademy(data: List<AcademyData>): List<AcademyTeachingProcess> {
         return data.groupBy {
             AcademyTeachingProcess(
                 it.academyName,
                 it.academyAddress,
                 it.teachingProcess,
-                isFavorite = false,
                 teachingCourseList = listOf()
             )
         }.map {
@@ -108,6 +123,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    // 오류 처리 메서드
     private fun onError(message: String) {
         academyError.postValue(message)
         loading.postValue(false)

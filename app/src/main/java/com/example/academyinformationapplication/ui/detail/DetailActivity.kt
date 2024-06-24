@@ -23,13 +23,16 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var detailViewModel: DetailViewModel
     private lateinit var mainViewModel: MainViewModel
     private lateinit var favoriteIcon: ImageView
-    private var isFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
 
         detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -53,24 +56,29 @@ class DetailActivity : AppCompatActivity() {
         binding.teachingProcess.text = data.teachingProcess
         binding.academyAddress.text = data.academyAddress
 
-        favoriteIcon = binding.toolbar.findViewById(R.id.favoriteIcon)
-        isFavorite = mainViewModel.favoriteList.value?.any { it.academyName == data.academyName } == true
-        updateFavoriteIcon()
+        favoriteIcon = binding.favoriteIcon
+
+        var isFavorite = getCurrentFavoriteState(data)
+        updateFavoriteIcon(data)
 
         favoriteIcon.setOnClickListener {
             isFavorite = !isFavorite
-            updateFavoriteIcon()
-            data.isFavorite = isFavorite
             if (isFavorite) {
                 mainViewModel.addFavorite(data)
             } else {
                 mainViewModel.removeFavorite(data)
             }
+            updateFavoriteIcon(data)
         }
     }
 
-    private fun updateFavoriteIcon() {
-        if (isFavorite) {
+    private fun getCurrentFavoriteState(data: AcademyTeachingProcess): Boolean {
+        val currentFavoriteState = mainViewModel.getCurrentFavoriteState(data)
+        return currentFavoriteState
+    }
+
+    private fun updateFavoriteIcon(data: AcademyTeachingProcess) {
+        if (getCurrentFavoriteState(data)) {
             favoriteIcon.setImageResource(R.drawable.favorite)
         } else {
             favoriteIcon.setImageResource(R.drawable.favorite_border)
